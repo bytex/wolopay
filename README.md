@@ -89,14 +89,16 @@ Please note that: `wolopay` is autowired by Grails. Please note that: `log`, `pa
 ```
 * Determine Wolopay transaction URL:
 ```groovy
-  // You can pass some extra variables to Wolopay:
-  def extra = ['gamer_email': player.email ?: '', 'fixed_country': 1, 'fixed_language': 1]
-// You can also open specific tab, and select default item:  //  extra += [ selected_tab_category_id: 'subscription', 
-  //             selected_article_id: '12345678-abcd-dcba-0000-000000000000' ]
+// You can pass some extra variables to Wolopay:
+def extra = ['gamer_email': player.email ?: '', 'fixed_country': 1, 'fixed_language': 1]
+
+// You can also open specific tab, and select default item:
+//  extra += [ selected_tab_category_id: 'subscription',
+//             selected_article_id: '12345678-abcd-dcba-0000-000000000000' ]
   
-  // You can also pass specific language:
-  Locale locale = UtilLocale.resolveLocale(request);
-  extra += ['default_language': locale.language]
-  def wolopayUrl = wolopay.createTransactionUrl(player.id as String, player.level as String, extra)
+// You can also pass specific language:
+Locale locale = UtilLocale.resolveLocale(request);
+extra += ['default_language': locale.language]
+def wolopayUrl = wolopay.createTransactionUrl(player.id as String, player.level as String, extra)
 ```
 
